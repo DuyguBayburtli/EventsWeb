@@ -16,11 +16,11 @@ function MyState(props) {
     }
   } 
 
-  const [loading, setLoading] =useState(false);
+
 
     
   return (
-    <myContext.Provider value={{mode, toggleMode, loading, setLoading}}>
+    <myContext.Provider value={{mode, toggleMode}}>
        {props.children}
     </myContext.Provider>
   )

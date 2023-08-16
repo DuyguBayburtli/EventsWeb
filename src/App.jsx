@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -13,8 +13,9 @@ import NoPage from './pages/nopage/NoPage';
 import MyState from './context/data/myState';
 import Login from './pages/registration/Login';
 import Signup from './pages/registration/Signup';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import EventInfo from './pages/eventInfo/EventInfo';
+import AddEvent from './pages/admin/page/AddEvent';
+import UpdateEvent from './pages/admin/page/UpdateEvent';
 
 
 function App() {
@@ -28,9 +29,13 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
+        <Route path="/eventinfo/:id" element={<EventInfo />} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/addevent" element={<AddEvent />}/>
+        <Route path="/updateevent" element={< UpdateEvent/>}/>
         <Route path="/*" element={<NoPage />}/>
       </Routes>
-      <ToastContainer/>
+   
     </Router>
    </MyState>
     

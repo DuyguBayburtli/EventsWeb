@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import myContext from '../../context/data/myContext'
 
-function ProductCard() {
+function EventCard() {
     const context = useContext(myContext)
     const { mode } = context
     return (
@@ -99,4 +99,4 @@ function ProductCard() {
     )
 }
 
-export default ProductCard
+export default EventCard

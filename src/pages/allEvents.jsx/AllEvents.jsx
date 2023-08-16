@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AllProducts() {
+function AllEvents() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function AllProducts() {
   )
 }
 
-export default AllProducts
+export default AllEvents
