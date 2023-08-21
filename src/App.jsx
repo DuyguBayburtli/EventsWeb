@@ -16,7 +16,8 @@ import Signup from './pages/registration/Signup';
 import EventInfo from './pages/eventInfo/EventInfo';
 import AddEvent from './pages/admin/page/AddEvent';
 import UpdateEvent from './pages/admin/page/UpdateEvent';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
         <Route path="/updateevent" element={< UpdateEvent/>}/>
         <Route path="/*" element={<NoPage />}/>
       </Routes>
-   
+      <ToastContainer/>
     </Router>
    </MyState>
     
