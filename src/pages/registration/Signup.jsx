@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
-import {  toast } from 'react-toastify';
 import { useContext, useState } from 'react';
 import myContext from '../../context/data/myContext';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/FirebaseConfig';
+import { auth, fireDB } from '../../firebase/FirebaseConfig';
+import Loader from '../../components/loader/Loader';
+import { Timestamp, addDoc, collection } from '@firebase/firestore';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 function Signup() {
@@ -15,7 +17,6 @@ function Signup() {
     const context = useContext(myContext);
     const {loading, setLoading} = context;
 
-    
     const signup = async () => {
         setLoading(true)
         if (name === "" || email === "" || password === "") {
@@ -46,25 +47,28 @@ function Signup() {
             setLoading(false)
         }
     }
+
    
     return (
         <div className=' flex justify-center items-center h-screen'>
+             {loading && <Loader/>}
             <div className=' bg-gray-800 px-10 py-10 rounded-xl '>
                 <div className="">
-                    <h1 className='text-center text-white text-xl mb-4 font-bold'>Signup</h1>
+                    <h1 className='text-center text-white text-xl mb-4 font-bold'>Kaydol</h1>
                 </div>
                 <div>
                     <input type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        name='name'
+                        name='İsim'
                         className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
-                        placeholder='Name'
+                        placeholder='İsim'
                     />
                 </div>
+               
                 <div>
                     <input type="email"
-                        value={name}
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         name='email'
                         className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
@@ -76,19 +80,20 @@ function Signup() {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        name ='şifre'
                         className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
-                        placeholder='Password'
+                        placeholder='Şifre'
                     />
                 </div>
                 <div className=' flex justify-center mb-3'>
                     <button
-                     onClick={signup}
+                        onClick={signup}
                         className=' bg-red-500 w-full text-white font-bold  px-2 py-2 rounded-lg'>
-                        Signup
+                        Kaydol
                     </button>
                 </div>
                 <div>
-                    <h2 className='text-white'>Have an account <Link className=' text-red-500 font-bold' to={'/login'}>Login</Link></h2>
+                    <h2 className='text-white'>Hesabın var mı? <Link className=' text-red-500 font-bold' to={'/login'}>Giriş yap</Link></h2>
                 </div>
             </div>
         </div>
