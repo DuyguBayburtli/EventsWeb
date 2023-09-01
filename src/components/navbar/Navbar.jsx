@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Fragment, useContext, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { RxCross2 } from 'react-icons/rx'
+import { useSelector } from 'react-redux';
 
 function Navbar() {
 
@@ -21,6 +22,8 @@ function Navbar() {
     localStorage.clear('user');
     window.location.href = '/login'
   }
+
+
 
   return (
     <div className="bg-white sticky top-0 z-50  "  >
@@ -67,7 +70,7 @@ function Navbar() {
                 </Link>
 
                 { user ? <div className="flow-root">
-                  <Link to={'/order'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
+                  <Link to={'/cart'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
                    Etkinliklerim
                   </Link>
                 </div> : "" }

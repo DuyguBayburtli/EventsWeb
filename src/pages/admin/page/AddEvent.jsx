@@ -4,6 +4,7 @@ import myContext from '../../../context/data/myContext';
 function AddEvent() {
     const context = useContext(myContext);
     const {products,setProducts,addProduct} = context
+    
     return (
         <div>
             <div className=' flex justify-center items-center h-screen'>
@@ -72,7 +73,7 @@ function AddEvent() {
                     </div>
                     <div className=' flex justify-center mb-3'>
                         <button
-                        onClick={addProduct}
+                            onClick={addProduct}
                             className=' bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg'>
                             Etkinlik Ekle
                         </button>

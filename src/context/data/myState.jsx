@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import MyContext from './myContext';
 import { fireDB } from '../../firebase/FirebaseConfig';
-import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from '@firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from '@firebase/firestore';
+import { toast } from 'react-toastify';
 
 function MyState(props) {
   const [mode, setMode] = useState('light');
@@ -42,7 +43,7 @@ function MyState(props) {
     try {
       const productRef = collection(fireDB, "products");
       await addDoc(productRef, products)
-      toast.success("Product Add successfully")
+      toast.success("Etkinlik Ekleme Başarılı")
       setTimeout(() => {
         window.location.href ='/dashboard'
       }, 800 );
@@ -92,20 +93,23 @@ function MyState(props) {
     setProducts(item)
   }
 
-   // update product
-   const updateProduct = async (item) => {
+  // update product
+  const updateProduct = async () => {
     setLoading(true)
     try {
       await setDoc(doc(fireDB, "products", products.id), products);
       toast.success("Etkinlik güncelleme başarılı")
       getProductData();
+      setTimeout(() => {
+        window.location.href = '/dashboard'
+      },800 );
       setLoading(false)
-      window.location.href = '/dashboard'
+
     } catch (error) {
       setLoading(false)
       console.log(error)
     }
-    setProducts("")
+   
   }
 
 
@@ -113,9 +117,10 @@ function MyState(props) {
     setLoading(true)
     try {
       await deleteDoc(doc(fireDB, "products", item.id));
-      toast.success('Product Deleted successfully')
+      toast.success('Etkinlik Silme Başarılı')
       setLoading(false)
       getProductData()
+
     } catch (error) {
       // toast.success('Product Deleted Falied')
       setLoading(false)
@@ -127,8 +132,9 @@ function MyState(props) {
 
   return (
     <MyContext.Provider value={{ 
-      mode, toggleMode, loading,setLoading,
-      products, setProducts,addProduct, product, edithandle,updateProduct, deleteProduct
+      mode, toggleMode, loading, setLoading,
+      products, setProducts, addProduct, product,
+       edithandle, updateProduct, deleteProduct
     }}>
       {props.children}
     </MyContext.Provider>

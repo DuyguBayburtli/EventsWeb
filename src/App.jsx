@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
+  
    <MyState>
     <Router>
       <Routes>
@@ -47,7 +48,7 @@ function App() {
       <ToastContainer/>
     </Router>
    </MyState>
-    
+  
  
   )
 }
@@ -75,6 +76,6 @@ export const ProtectedRoutesForAdmin = ({children}) => {
     return children
   }
   else {
-    return <Navigate to='/login' />
+    return <Navigate to={'/login'} />
   }
 }
