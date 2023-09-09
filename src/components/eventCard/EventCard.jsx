@@ -6,7 +6,8 @@ import { toast } from 'react-toastify'
 
 function EventCard() {
     const context = useContext(myContext)
-    const { mode, product} = context
+    const { mode, product, searchkey,setSearchkey,filterAddress, setFilterAddress,
+        filterType, setFilterType} = context
 
     const dispatch = useDispatch()
     const cartItems = useSelector((state) => state.cart)
@@ -27,7 +28,9 @@ function EventCard() {
                 </div>
 
                 <div className="flex flex-wrap -m-4">
-                   {product.map((item,index)=>{
+                {product.filter((obj) => obj.title.toLowerCase().includes(searchkey))
+                        .filter((obj) => obj.category.toLowerCase().includes(filterType))
+                        .filter((obj) => obj.adress.includes(filterAddress)).map((item, index)=>{
                     const{title , date, time, imageUrl, category,id} = item;
                     return(
                         <div onClick={()=> window.location.href = `/eventinfo/${id}`} 

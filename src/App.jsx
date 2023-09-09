@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from './pages/home/Home';
-import Order from './pages/order/Order';
 import Cart from './pages/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import NoPage from './pages/nopage/NoPage';
@@ -26,11 +25,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/order" element={
-            <ProtectedRoute>
-              <Order />
-            </ProtectedRoute>
-          } />
         <Route path="/cart" element={<Cart />}/>
         <Route path="/dashboard" element={
             <ProtectedRoutesForAdmin><Dashboard /></ProtectedRoutesForAdmin>

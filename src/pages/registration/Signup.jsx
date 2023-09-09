@@ -36,7 +36,7 @@ function Signup() {
             }
             const userRef = collection(fireDB, "users")
             await addDoc(userRef, user);
-            toast.success("Signup Succesfully")
+            toast.success("Kayıt Başarılı")
             setName("");
             setEmail("");
             setPassword("");

@@ -52,13 +52,13 @@ function ProductInfo() {
 
     const [name, setName] = useState("")
     const [address, setAddress] = useState("");
-    const [pincode, setPincode] = useState("")
+    const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
   
   
-    const buyNow = async () => {
+    const addNow = async () => {
       // validation 
-      if (name === "" || address == "" || pincode == "" || phoneNumber == "") {
+      if (name === "" || address == "" || email == "" || phoneNumber == "") {
         return toast.error("All fields are required", {
           position: "top-center",
           autoClose: 1000,
@@ -73,19 +73,17 @@ function ProductInfo() {
         const addressInfo = {
           name,
           address,
-          pincode,
+          email,
           phoneNumber,
         }
         console.log(addressInfo)
-  
-      
+
         const orderInfo = {
             cartItems,
             addressInfo,
             email: JSON.parse(localStorage.getItem("user")).user.email,
             userid: JSON.parse(localStorage.getItem("user")).user.uid,
           }
-  
         try {
             const result = collection(fireDB, "orders")
             addDoc(result,orderInfo)
@@ -93,13 +91,8 @@ function ProductInfo() {
           catch (error) {
             console.log(error)
           }
-
-         
         dispatch(addToCart(products));
-        toast.success('Etkinlik eklendi');
-        
-  
-      };
+        toast.success('Etkinlik eklendi'); };
 
 
     return (
@@ -127,11 +120,11 @@ function ProductInfo() {
 
                             <div className="flex">
                                 <span className="title-font font-medium text-2xl text-gray-900">
-                                {products.date} / {products.time}
+                                {products.date}  /  {products.time}
                                 </span>
 
                             </div>
-                            <Modal name={name} address={address} pincode={pincode} phoneNumber={phoneNumber} setName={setName} setAddress={setAddress} setPincode={setPincode} setPhoneNumber={setPhoneNumber} buyNow={buyNow} />
+                            <Modal name={name} address={address} email={email} phoneNumber={phoneNumber} setName={setName} setAddress={setAddress} setEmail={setEmail} setPhoneNumber={setPhoneNumber} addNow={addNow} />
 
                         </div>
                     </div>}

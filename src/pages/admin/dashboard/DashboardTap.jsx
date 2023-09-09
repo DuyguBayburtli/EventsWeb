@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 function DashboardTab() {
     const context = useContext(myContext)
-    const { mode, product, edithandle, deleteProduct} = context
+    const { mode, product, edithandle, deleteProduct, order} = context
 
     console.log(product)
     
@@ -153,56 +153,72 @@ function DashboardTab() {
                             
                             <div className="relative overflow-x-auto mb-16">
                                 <h1 className=' text-center mb-5 text-3xl font-semibold underline' style={{ color: mode === 'dark' ? 'white' : '' }}> Katılımcı Bilgileri</h1>
-                                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
+                                       {order.map((allorder,index) => {
+                                        return(
+                                            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
                                             <thead  className="text-xs text-black uppercase bg-gray-200 " style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                                 <tr>
                                                     <th scope="col" className="px-6 py-3">
-                                                        sıra
+                                                        Sıra
                                                     </th>
                                                     <th scope="col" className="px-6 py-3">
-                                                        İsim
+                                                        Ad Soyad
                                                     </th>
                                                     <th scope="col" className="px-6 py-3">
-                                                        Soyisim
+                                                        Etkinlik
                                                     </th>
                                                     <th scope="col" className="px-6 py-3">
-                                                        etkinlik
+                                                        Kategori
+                                                    </th>
+                                                    <th scope="col" className="px-6 py-3">
+                                                        Eposta
                                                     </th>
                                                     <th scope="col" className="px-6 py-3">
                                                         Telefon Numarası
                                                     </th>
                                                     <th scope="col" className="px-6 py-3">
-                                                        Eposta
+                                                        Adres
                                                     </th>
                                                     
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                           {allorder.cartItems.map((item, index)=>{
+                                            const {category, title} =item;
+                                            return(
+                                                <tbody>
                                                
                                                 <tr className="bg-gray-50 border-b  dark:border-gray-700" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                               1
-                                                            </td>
-                                                           
-                                                            <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                                Duygu
+                                                               {index +1}
                                                             </td>
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                                Bayburtli
+                                                              {allorder.addressInfo.name}
                                                             </td>
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                                Yüzme
+                                                                {title}
                                                             </td>
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                                387465927
+                                                                {category}
                                                             </td>
                                                             <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
-                                                                duygu@gmail.com
+                                                                {allorder.email}
+                                                            </td>
+                                                            <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
+                                                                {allorder.addressInfo.phoneNumber}
+                                                            </td>
+                                                            <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
+                                                                {allorder.addressInfo.address}
                                                             </td>
                                                 </tr>
                                                 
                                             </tbody>
+                                            )
+                                           }
+
+                                           )}
                                         </table>
+                                        )
+                                       })}
                                  
                             </div>
                         </TabPanel>
